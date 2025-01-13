@@ -139,7 +139,6 @@ The repository includes two types of tests to ensure the functionality and relia
 | ./programs/pump-science/src/instructions/curve/swap.rs                 | 343      |
 | ./programs/pump-science/src/instructions/migration/create_pool.rs      | 323      |
 | ./programs/pump-science/src/state/bonding_curve/curve.rs               | 289      |
-| ./programs/pump-science/src/state/bonding_curve/tests.rs               | 259      |
 | ./programs/pump-science/src/instructions/curve/create_bonding_curve.rs | 196      |
 | ./programs/pump-science/src/instructions/migration/lock_pool.rs        | 184      |
 | ./programs/pump-science/src/state/global.rs                            | 141      |
@@ -162,7 +161,7 @@ The repository includes two types of tests to ensure the functionality and relia
 | ./programs/pump-science/src/instructions/migration/mod.rs              | 4        |
 | ./programs/pump-science/src/state/mod.rs                               | 4        |
 | ./programs/pump-science/src/instructions/curve/mod.rs                  | 3        |
-| **SUM:**                                                               | **2289** |
+| **SUM:**                                                               | **2030** |
 
 ### Files out of scope
 

@@ -18,7 +18,6 @@
 ./programs/pump-science/src/state/bonding_curve/locker.rs
 ./programs/pump-science/src/state/bonding_curve/mod.rs
 ./programs/pump-science/src/state/bonding_curve/structs.rs
-./programs/pump-science/src/state/bonding_curve/tests.rs
 ./programs/pump-science/src/state/global.rs
 ./programs/pump-science/src/state/meteora.rs
 ./programs/pump-science/src/state/mod.rs

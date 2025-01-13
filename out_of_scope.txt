@@ -19,3 +19,4 @@
 ./clients/rust/src/generated/types/global_settings_input.rs
 ./clients/rust/src/generated/types/mod.rs
 ./clients/rust/src/lib.rs
+./programs/pump-science/src/state/bonding_curve/tests.rs
