@@ -119,7 +119,7 @@ The repository includes two types of tests to ensure the functionality and relia
 ## Links
 
 - **Previous audits:**  Not completed yet
-- **Documentation:** https://github.com/moleculeprotocol/pump-science-contract (Jay to double check) ✅
+- **Documentation:** https://pumpscience.gitbook.io/pump.science/tokenomics-litepaper
 - **Website:** https://www.pump.science/
 - **X/Twitter:** https://x.com/pumpdotscience
 - **Telegram:** https://t.me/pump_science
