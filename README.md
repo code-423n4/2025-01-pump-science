@@ -19,109 +19,170 @@ As such, wardens are encouraged to select the appropriate risk level carefully d
 
 ## Automated Findings / Publicly Known Issues
 
-The 4naly3er report can be found [here](https://github.com/code-423n4/2024-12-pump-science/blob/main/4naly3er-report.md).
-
 
 
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
 Some accounts are not being checked in the migration instructions. This is fine because those accounts are being checked by the Meteora program itself
 
-✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
 
 # Overview
 
-[ ⭐️ SPONSORS: add info here ]
+Pump Science Bonding Curve Protocol is a Solana protocol implementing an advanced bonding curve mechanism for fundraising and sustainable project funding. This protocol enables compound submitters to launch their own token ($DRUG) with dynamic fee structures and automated liquidity management.
+
+## Core Features
+
+### Bonding Curve Mechanism
+
+The protocol implements a constant product bonding curve (x * y = k) with the following initial parameters:
+
+- Initial Virtual Token Reserves: 1,073,000,000,000,000
+- Initial Virtual SOL Reserves: 30,000,000,000
+- Initial Real Token Reserves: 793,100,000,000,000
+- Total Token Supply: 1,000,000,000,000,000
+
+The bonding curve ensures price discovery and continuous liquidity for the token.
+
+### Dynamic Fee Structure
+
+Fees are calculated using a piecewise linear function based on user participation slots:
+
+1. Early Phase (t < 150):
+   - Fixed 99% fee
+2. Transition Phase (150 ≤ t ≤ 250):
+   - Linear decrease: F(t) = -0.0083 * t + 2.1626
+3. Mature Phase (t > 250):
+   - Fixed 1% fee
+
+All fees are directed to the protocol's multisig wallet: `3bM4hewuZFZgNXvLWwaktXMa8YHgxsnnhaRfzxJV944P`
+
+### Automated Liquidity Management
+
+When the bonding curve accumulates 85 SOL:
+1. X SOL is sent to the protocol multisig
+2. Remaining SOL is used to seed a Meteora constant product liquidity pool
+3. LP tokens are locked with claim authority assigned to the protocol multisig
+
+## Administrative Roles
+
+### Curve Creator
+- Can initialize new bonding curves
+- Sets initial parameters and optional whitelist
+- Configures launch timing and initial purchases
+
+### Admin
+- Can modify protocol parameters
+- Manages fee settings
+- Controls whitelist status
+
+### Fee Recipients
+- Protocol Multisig (`3bM4hewuZFZgNXvLWwaktXMa8YHgxsnnhaRfzxJV944P`)
+  - Receives trading fees
+  - Has authority over locked LP tokens
+  - Receives swapped USDC from liquidity migrations
+
+## Creating a Bonding Curve
+
+To create a new bonding curve:
+
+1. Initialize curve parameters
+2. Optional: Enable whitelist
+3. Set launch timing
+4. Configure initial purchases
+
+Trading is enabled along the bonding curve until 85 SOL are raised and all 793,100,000 tokens are sold.
+
+## Migration
+Migration is a critical process that occurs once the bonding curve has completed and the tokens are empty. It involves:
+
+1. Minting the remaining 206,900,000 tokens
+2. Sending the experiment fee to the multisig wallet
+3. A CPI (Cross-Program Invocation) call to create a Meteora Dynamic AMM (Automated Market Maker). It uses 206,900,000 matched with 85SOL - experiment fee
+
+4. A separate instruction CPI call that locks the liquidity in the AMM and creates an escrow from which the multisig can claim trading fees.
+
+## Testing
+
+The repository includes two types of tests to ensure the functionality and reliability of the Pump Science Bonding Curve Protocol:
+
+1. **Unit Tests**: These tests are written in Rust and are located within the program's source code. They focus on testing individual components of the bonding curve logic. You can run these tests using the following command:
+   ```bash
+   pnpm programs:test
+   ```
+
+2. **Bankrun End-to-End Tests**: These tests simulate real-world scenarios to validate the entire protocol's behavior from start to finish. They are written in TypeScript and can be executed with the following command:
+   ```bash
+   pnpm test:bankrun
+   ```
+
 
 ## Links
 
 - **Previous audits:**  Not completed yet
-  - ✅ SCOUTS: If there are multiple report links, please format them in a list.
-- **Documentation:** https://github.com/moleculeprotocol/pump-science-contract (Jay to double check)
+- **Documentation:** https://github.com/moleculeprotocol/pump-science-contract (Jay to double check) ✅
 - **Website:** https://www.pump.science/
 - **X/Twitter:** https://x.com/pumpdotscience
 - **Telegram:** https://t.me/pump_science
 
 ---
 
+
 # Scope
 
-[ ✅ SCOUTS: add scoping and technical details here ]
+*See [scope.txt](https://github.com/code-423n4/2025-01-pump-science/blob/main/scope.txt)*
 
 ### Files in scope
-- ✅ This should be completed using the `metrics.md` file
-- ✅ Last row of the table should be Total: SLOC
-- ✅ SCOUTS: Have the sponsor review and and confirm in text the details in the section titled "Scoping Q amp; A"
 
-*For sponsors that don't use the scoping tool: list all files in scope in the table below (along with hyperlinks) -- and feel free to add notes to emphasize areas of focus.*
 
-| Contract | SLOC | Purpose | Libraries used |  
-| ----------- | ----------- | ----------- | ----------- |
-| [contracts/folder/sample.sol](https://github.com/code-423n4/repo-name/blob/contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+| File                                                                   | SLOC     |
+|------------------------------------------------------------------------|----------|
+| ./programs/pump-science/src/instructions/curve/swap.rs                 | 343      |
+| ./programs/pump-science/src/instructions/migration/create_pool.rs      | 323      |
+| ./programs/pump-science/src/state/bonding_curve/curve.rs               | 289      |
+| ./programs/pump-science/src/state/bonding_curve/tests.rs               | 259      |
+| ./programs/pump-science/src/instructions/curve/create_bonding_curve.rs | 196      |
+| ./programs/pump-science/src/instructions/migration/lock_pool.rs        | 184      |
+| ./programs/pump-science/src/state/global.rs                            | 141      |
+| ./programs/pump-science/src/state/bonding_curve/locker.rs              | 96       |
+| ./programs/pump-science/src/errors.rs                                  | 74       |
+| ./programs/pump-science/src/events.rs                                  | 61       |
+| ./programs/pump-science/src/instructions/admin/set_params.rs           | 47       |
+| ./programs/pump-science/src/lib.rs                                     | 47       |
+| ./programs/pump-science/src/state/meteora.rs                           | 44       |
+| ./programs/pump-science/src/instructions/admin/add_wl.rs               | 37       |
+| ./programs/pump-science/src/instructions/admin/initialize.rs           | 37       |
+| ./programs/pump-science/src/state/bonding_curve/structs.rs             | 33       |
+| ./programs/pump-science/src/instructions/admin/remove_wl.rs            | 28       |
+| ./programs/pump-science/src/state/whitelist.rs                         | 9        |
+| ./programs/pump-science/src/util.rs                                    | 9        |
+| ./programs/pump-science/src/constants.rs                               | 6        |
+| ./programs/pump-science/src/instructions/mod.rs                        | 6        |
+| ./programs/pump-science/src/state/bonding_curve/mod.rs                 | 5        |
+| ./programs/pump-science/src/instructions/admin/mod.rs                  | 4        |
+| ./programs/pump-science/src/instructions/migration/mod.rs              | 4        |
+| ./programs/pump-science/src/state/mod.rs                               | 4        |
+| ./programs/pump-science/src/instructions/curve/mod.rs                  | 3        |
+| **SUM:**                                                               | **2289** |
 
 ### Files out of scope
-✅ SCOUTS: List files/directories out of scope
+
+*See [out_of_scope.txt](https://github.com/code-423n4/2025-01-pump-science/blob/main/out_of_scope.txt)*
+
+
 
 ## Scoping Q &amp; A
 
 ### General questions
-### Are there any ERC20's in scope?: No
-
-✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
-
-
-
-
-### Are there any ERC777's in scope?: 
-
-✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
-
-
-
-### Are there any ERC721's in scope?: No
-
-✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
-
-
-
-### Are there any ERC1155's in scope?: No
-
-✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
-
-
-
-✅ SCOUTS: Once done populating the table below, please remove all the Q/A data above.
 
 | Question                                | Answer                       |
 | --------------------------------------- | ---------------------------- |
-| ERC20 used by the protocol              |       🖊️             |
-| Test coverage                           | ✅ SCOUTS: Please populate this after running the test coverage command                          |
-| ERC721 used  by the protocol            |            🖊️              |
-| ERC777 used by the protocol             |           🖊️                |
-| ERC1155 used by the protocol            |              🖊️            |
-| Chains the protocol will be deployed on | OtherSolana  |
+| ERC20 used by the protocol              |       None             |
+| Test coverage                           | N/A                          |
+| ERC721 used  by the protocol            |            None              |
+| ERC777 used by the protocol             |           None                |
+| ERC1155 used by the protocol            |              None            |
+| Chains the protocol will be deployed on | Solana  |
 
-### ERC20 token behaviors in scope
-
-| Question                                                                                                                                                   | Answer |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| [Missing return values](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#missing-return-values)                                                      |    |
-| [Fee on transfer](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#fee-on-transfer)                                                                  |   |
-| [Balance changes outside of transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#balance-modifications-outside-of-transfers-rebasingairdrops) |    |
-| [Upgradeability](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#upgradable-tokens)                                                                 |    |
-| [Flash minting](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#flash-mintable-tokens)                                                              |    |
-| [Pausability](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#pausable-tokens)                                                                      |    |
-| [Approval race protections](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#approval-race-protections)                                              |    |
-| [Revert on approval to zero address](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-approval-to-zero-address)                            |    |
-| [Revert on zero value approvals](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-zero-value-approvals)                                    |    |
-| [Revert on zero value transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-zero-value-transfers)                                    |    |
-| [Revert on transfer to the zero address](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-transfer-to-the-zero-address)                    |    |
-| [Revert on large approvals and/or transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-large-approvals--transfers)                  |    |
-| [Doesn't revert on failure](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#no-revert-on-failure)                                                   |    |
-| [Multiple token addresses](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-zero-value-transfers)                                          |    |
-| [Low decimals ( < 6)](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#low-decimals)                                                                 |    |
-| [High decimals ( > 18)](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#high-decimals)                                                              |    |
-| [Blocklists](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#tokens-with-blocklists)                                                                |    |
 
 ### External integrations (e.g., Uniswap) behavior in scope:
 
@@ -136,12 +197,6 @@ Some accounts are not being checked in the migration instructions. This is fine 
 ### EIP compliance checklist
 N/A
 
-✅ SCOUTS: Please format the response above 👆 using the template below👇
-
-| Question                                | Answer                       |
-| --------------------------------------- | ---------------------------- |
-| src/Token.sol                           | ERC20, ERC721                |
-| src/NFT.sol                             | ERC721                       |
 
 
 # Additional context
@@ -153,25 +208,18 @@ N/A
 3. Migration can only happen when complete=true which happens when all available tokens are sold out (793,100,000) and approx. 85 SOL is raised
 4. Only the migration authority can execute migration instructions
 
-✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
 
 ## Attack ideas (where to focus for bugs)
-None
+N/A
 
-✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
 
 ## All trusted roles in the protocol
 
-Admin Authority - can make changes to configuration account
-Migration Authority - can call the migration instructions
-Optional whitelist feature for creating bonding curves
-
-✅ SCOUTS: Please format the response above 👆 using the template below👇
-
 | Role                                | Description                       |
 | --------------------------------------- | ---------------------------- |
-| Owner                          | Has superpowers                |
-| Administrator                             | Can change fees                       |
+| Admin Authority                          | can make changes to configuration account                |
+| Migration Authority                             | can call the migration instructions                       |
+| Whitelist members (optional feature)  |  creating bonding curves  |
 
 ## Describe any novel or unique curve logic or mathematical models implemented in the contracts:
 
@@ -184,82 +232,25 @@ The protocol implements a constant product bonding curve (x * y = k) with the fo
 
 The bonding curve ensures price discovery and continuous liquidity for the token.
 
-✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
 
 ## Running tests
 
+
+
+
+```bash
+git clone https://github.com/code-423n4/2025-01-pump-science.git
+cd 2025-01-pump-science
 pnpm install
 pnpm programs:build
-pnpm programs:test (unit tests of smart contract specific bonding curve functions)
-pnpm test:bankrun (integration test suite)
-
-✅ SCOUTS: Please format the response above 👆 using the template below👇
-
-```bash
-git clone https://github.com/code-423n4/2023-08-arbitrum
-git submodule update --init --recursive
-cd governance
-foundryup
-make install
-make build
-make sc-election-test
-```
-To run code coverage
-```bash
-make coverage
-```
-To run gas benchmarks
-```bash
-make gas
+pnpm programs:test # unit tests of smart contract specific bonding curve functions
+pnpm test:bankrun  # integration test suite
 ```
 
-✅ SCOUTS: Add a screenshot of your terminal showing the gas report
-✅ SCOUTS: Add a screenshot of your terminal showing the test coverage
+
+
 
 ## Miscellaneous
 Employees of Pump Science and employees' family members are ineligible to participate in this audit.
 
 Code4rena's rules cannot be overridden by the contents of this README. In case of doubt, please check with C4 staff.
-
-# Scope
-
-*See [scope.txt](https://github.com/code-423n4/2025-01-pump-science/blob/main/scope.txt)*
-
-### Files in scope
-
-
-| File   | Logic Contracts | Interfaces | nSLOC | Purpose | Libraries used |
-| ------ | --------------- | ---------- | ----- | -----   | ------------ |
-| /programs/pump-science/src/instructions/admin/mod.rs | ****| **** | 4 | ||
-| /programs/pump-science/src/state/mod.rs | ****| **** | 4 | ||
-| **Totals** | **** | **** | **8** | | |
-
-### Files out of scope
-
-*See [out_of_scope.txt](https://github.com/code-423n4/2025-01-pump-science/blob/main/out_of_scope.txt)*
-
-| File         |
-| ------------ |
-| ./clients/rust/src/generated/accounts/bonding_curve.rs |
-| ./clients/rust/src/generated/accounts/global.rs |
-| ./clients/rust/src/generated/accounts/mod.rs |
-| ./clients/rust/src/generated/accounts/whitelist.rs |
-| ./clients/rust/src/generated/errors/mod.rs |
-| ./clients/rust/src/generated/errors/pump_science.rs |
-| ./clients/rust/src/generated/instructions/add_wl.rs |
-| ./clients/rust/src/generated/instructions/create_bonding_curve.rs |
-| ./clients/rust/src/generated/instructions/create_pool.rs |
-| ./clients/rust/src/generated/instructions/initialize.rs |
-| ./clients/rust/src/generated/instructions/lock_pool.rs |
-| ./clients/rust/src/generated/instructions/mod.rs |
-| ./clients/rust/src/generated/instructions/remove_wl.rs |
-| ./clients/rust/src/generated/instructions/set_params.rs |
-| ./clients/rust/src/generated/instructions/swap.rs |
-| ./clients/rust/src/generated/mod.rs |
-| ./clients/rust/src/generated/programs.rs |
-| ./clients/rust/src/generated/types/global_authority_input.rs |
-| ./clients/rust/src/generated/types/global_settings_input.rs |
-| ./clients/rust/src/generated/types/mod.rs |
-| ./clients/rust/src/lib.rs |
-| Totals: 21 |
-
