@@ -119,7 +119,7 @@ The repository includes two types of tests to ensure the functionality and relia
 ## Links
 
 - **Previous audits:**  [Pashov Audit Group](https://github.com/code-423n4/2025-01-pump-science/blob/main/audits/PumpScience%20-%20Pashov%20audit.pdf)
-- **Documentation:** https://pumpscience.gitbook.io/pump.science/tokenomics-litepaper
+- **Documentation:** [gitbook](https://pumpscience.gitbook.io/pump.science/tokenomics-litepaper)
 - **Website:** https://www.pump.science/
 - **X/Twitter:** https://x.com/pumpdotscience
 - **Telegram:** https://t.me/pump_science
