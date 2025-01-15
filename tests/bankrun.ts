@@ -1,4 +1,4 @@
-import { Amman } from "@metaplex-foundation/amman-client";
+// import { Amman } from "@metaplex-foundation/amman-client";
 import {
   keypairIdentity,
   Keypair,
@@ -51,12 +51,12 @@ import { BN } from "bn.js";
 const USE_BANKRUN = true;
 const INITIAL_SOL = 500 * LAMPORTS_PER_SOL;
 
-const amman = Amman.instance({
-  ammanClientOpts: { autoUnref: false, ack: true },
-  knownLabels: {
-    [PUMP_SCIENCE_PROGRAM_ID.toString()]: "PumpScienceProgram",
-  },
-});
+// const amman = Amman.instance({
+//   ammanClientOpts: { autoUnref: false, ack: true },
+//   knownLabels: {
+//     [PUMP_SCIENCE_PROGRAM_ID.toString()]: "PumpScienceProgram",
+//   },
+// });
 const MPL_TOKEN_METADATA_PROGRAM_ID = publicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s")
 // --- KEYPAIRS
 const web3Keypair = Web3JsKeypair.fromSecretKey(Uint8Array.from(require("../pump_test.json")))
@@ -68,10 +68,10 @@ const creator = fromWeb3JsKeypair(Web3JsKeypair.generate());
 const trader = fromWeb3JsKeypair(Web3JsKeypair.generate());
 const withdrawAuthority = fromWeb3JsKeypair(Web3JsKeypair.generate());
 
-amman.addr.addLabel("withdrawAuthority", withdrawAuthority.publicKey);
-amman.addr.addLabel("simpleMint", simpleMintKp.publicKey);
-amman.addr.addLabel("creator", creator.publicKey);
-amman.addr.addLabel("trader", trader.publicKey);
+// amman.addr.addLabel("withdrawAuthority", withdrawAuthority.publicKey);
+// amman.addr.addLabel("simpleMint", simpleMintKp.publicKey);
+// amman.addr.addLabel("creator", creator.publicKey);
+// amman.addr.addLabel("trader", trader.publicKey);
 
 // --- PROVIDERS
 let bankrunContext: ProgramTestContext;
@@ -167,27 +167,27 @@ export const loadBin = async (binPath: string) => {
 
 // pdas and util accs
 
-const labelKeypairs = async (umi) => {
-  amman.addr.addLabel("master", masterKp.publicKey);
-  amman.addr.addLabel("simpleMint", simpleMintKp.publicKey);
-  amman.addr.addLabel("creator", creator.publicKey);
-  amman.addr.addLabel("trader", trader.publicKey);
-  amman.addr.addLabel("withdrawAuthority", withdrawAuthority.publicKey);
+// const labelKeypairs = async (umi) => {
+// amman.addr.addLabel("master", masterKp.publicKey);
+// amman.addr.addLabel("simpleMint", simpleMintKp.publicKey);
+// amman.addr.addLabel("creator", creator.publicKey);
+// amman.addr.addLabel("trader", trader.publicKey);
+// amman.addr.addLabel("withdrawAuthority", withdrawAuthority.publicKey);
 
-  const curveSdk = new PumpScienceSDK(
-    // master signer
-    umi.use(keypairIdentity(masterKp))
-  ).getCurveSDK(simpleMintKp.publicKey);
+// const curveSdk = new PumpScienceSDK(
+//   // master signer
+//   umi.use(keypairIdentity(masterKp))
+// ).getCurveSDK(simpleMintKp.publicKey);
 
-  amman.addr.addLabel("global", curveSdk.PumpScience.globalPda[0]);
-  amman.addr.addLabel("eventAuthority", curveSdk.PumpScience.evtAuthPda[0]);
-  amman.addr.addLabel("simpleMintBondingCurve", curveSdk.bondingCurvePda[0]);
-  amman.addr.addLabel(
-    "simpleMintBondingCurveTknAcc",
-    curveSdk.bondingCurveTokenAccount[0]
-  );
-  amman.addr.addLabel("metadata", curveSdk.mintMetaPda[0]);
-};
+// amman.addr.addLabel("global", curveSdk.PumpScience.globalPda[0]);
+// amman.addr.addLabel("eventAuthority", curveSdk.PumpScience.evtAuthPda[0]);
+// amman.addr.addLabel("simpleMintBondingCurve", curveSdk.bondingCurvePda[0]);
+// amman.addr.addLabel(
+//   "simpleMintBondingCurveTknAcc",
+//   curveSdk.bondingCurveTokenAccount[0]
+// );
+// amman.addr.addLabel("metadata", curveSdk.mintMetaPda[0]);
+// };
 
 import { transactionBuilder } from "@metaplex-foundation/umi";
 import { setComputeUnitLimit } from "@metaplex-foundation/mpl-toolbox";
@@ -244,7 +244,7 @@ const getTknAmount = async (umi: Umi, pubkey: PublicKey) => {
 describe("pump-science", () => {
   before(async () => {
     await loadProviders();
-    await labelKeypairs(umi);
+    // await labelKeypairs(umi);
   });
 
   it("is initialized", async () => {
