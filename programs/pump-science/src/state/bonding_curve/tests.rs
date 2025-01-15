@@ -67,34 +67,37 @@ mod tests {
 
         let mut current_slot = 1;
 
-        let fee = bonding_curve.calculate_fee(1000, current_slot).unwrap();
-        assert_eq!(fee, 990); // 99% of 1000
+        let amount = 1000000;
+
+        let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
+        assert_eq!(fee, amount * 9900 / 10000); // 99% of amount
 
         // Test Phase 2: Slot 150
         current_slot = 150;
-        let fee = bonding_curve.calculate_fee(1000, current_slot).unwrap();
+        let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
         // Calculate expected fee for slot 150
-        let expected_fee = bps_mul(917, 1000, 10_000).unwrap();
+        let expected_fee = bps_mul(9176, amount, 10_000).unwrap();
         assert_eq!(fee, expected_fee);
 
         // Test Phase 2: Slot 200
         current_slot = 200;
-        let fee = bonding_curve.calculate_fee(1000, current_slot).unwrap();
+        let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
         // Calculate expected fee for slot 200
-        let expected_fee = bps_mul(502, 1000, 10_000).unwrap(); // Example calculation
+        let expected_fee = bps_mul(5026, amount, 10_000).unwrap(); // Example calculation
         assert_eq!(fee, expected_fee);
 
         // Test Phase 2: Slot 250
         current_slot = 250;
-        let fee = bonding_curve.calculate_fee(1000, current_slot).unwrap();
+        let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
         // Calculate expected fee for slot 250
-        let expected_fee = bps_mul(87, 1000, 10_000).unwrap(); // Example calculation
+        let expected_fee = bps_mul(876, amount, 10_000).unwrap(); // Example calculation
         assert_eq!(fee, expected_fee);
 
         // Test Phase 3: Slot 300
         current_slot = 300;
-        let fee = bonding_curve.calculate_fee(1000, current_slot).unwrap();
-        assert_eq!(fee, 10); // 1% of 1000
+        let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
+
+        assert_eq!(fee, amount * 100 / 10000); // 1% of amount
     }
 
     #[test]
