@@ -48,7 +48,7 @@ Fees are calculated using a piecewise linear function based on user participatio
 1. Early Phase (t < 150):
    - Fixed 99% fee
 2. Transition Phase (150 ≤ t ≤ 250):
-   - Linear decrease: F(t) = -0.0083 * t + 2.1626
+   - Linear decrease: F(t) = -0.09704901 * t + 2.445930392
 3. Mature Phase (t > 250):
    - Fixed 1% fee
 
