@@ -7,7 +7,7 @@
   - Scout awards: $500 in USDC
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts January 15, 2025 20:00 UTC
-- Ends January 21, 2025 20:00 UTC
+- Ends January 23, 2025 20:00 UTC
 
 **Note re: risk level upgrades/downgrades**
 
