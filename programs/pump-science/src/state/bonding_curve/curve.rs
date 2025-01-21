@@ -23,15 +23,15 @@ impl BondingCurve {
 
         if slots_passed < 150 {
             msg!("Phase 1: 99% fees between slot 0 - 150");
-            sol_fee = bps_mul(9900, amount, 10_000).unwrap();
+            sol_fee = bps_mul(9999, amount, 10_000).unwrap();
         } else if slots_passed >= 150 && slots_passed <= 250 {
             msg!("Phase 2: Linear decrease between 150 - 250");
 
             // Calculate the minimum fee bps (at slot 250) scaled by 100_000 for precision
-            let fee_bps = (-8_300_000_i64)
+            let fee_bps = (-9_704_901_i64)
                 .checked_mul(slots_passed as i64)
                 .ok_or(ContractError::ArithmeticError)?
-                .checked_add(2_162_600_000)
+                .checked_add(2_445_930_392)
                 .ok_or(ContractError::ArithmeticError)?
                 .checked_div(100_000)
                 .ok_or(ContractError::ArithmeticError)?;

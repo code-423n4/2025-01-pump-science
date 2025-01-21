@@ -70,28 +70,33 @@ mod tests {
         let amount = 1000000;
 
         let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
-        assert_eq!(fee, amount * 9900 / 10000); // 99% of amount
+        assert_eq!(fee, amount * 9999 / 10000); // 99% of amount
 
         // Test Phase 2: Slot 150
         current_slot = 150;
         let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
         // Calculate expected fee for slot 150
-        let expected_fee = bps_mul(9176, amount, 10_000).unwrap();
+        let expected_fee = bps_mul(9901, amount, 10_000).unwrap();
         assert_eq!(fee, expected_fee);
 
         // Test Phase 2: Slot 200
         current_slot = 200;
         let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
         // Calculate expected fee for slot 200
-        let expected_fee = bps_mul(5026, amount, 10_000).unwrap(); // Example calculation
+        let expected_fee = bps_mul(5049, amount, 10_000).unwrap(); // Example calculation
         assert_eq!(fee, expected_fee);
 
         // Test Phase 2: Slot 250
         current_slot = 250;
         let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
         // Calculate expected fee for slot 250
-        let expected_fee = bps_mul(876, amount, 10_000).unwrap(); // Example calculation
+        let expected_fee = bps_mul(197, amount, 10_000).unwrap(); // Example calculation
         assert_eq!(fee, expected_fee);
+
+        // Test Phase 3: Slot 251 (first slot after transition phase)
+        current_slot = 251;
+        let fee = bonding_curve.calculate_fee(amount, current_slot).unwrap();
+        assert_eq!(fee, amount * 100 / 10000); // Should be 1% fee immediately after transition
 
         // Test Phase 3: Slot 300
         current_slot = 300;
