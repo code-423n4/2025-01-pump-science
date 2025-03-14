@@ -1,0 +1,750 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-PUBLIC / pump-science-jan
+==============================================================
+
+[01/14/2025 20:28] itsmetechjay (pinned)
+👋 Hello and welcome to the $20,000 in USDC **Pump Science **audit channel!
+
+📆 Audit opens Wednesday, 15 January 2025 20:00 (20:00 UTC) and runs through Thursday, 23 January 2025 20:00 (20:00 UTC) (8 days).
+
+Please give a warm welcome to the Pump Science team, particularly @Kulture, who will be available for questions either here in the channel or via a PRIVATE thread in the GMT+7 timezone. 
+
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try, by tagging `@Docs Wolf` in any thread (private or public) and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.  
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2025-01-pump-science
+
+
+[01/14/2025 20:29] itsmetechjay
+Pinned a message.
+
+
+[01/15/2025 04:02] kulture_
+Hello 👋
+
+{Reactions}
+👋 (7) 🤝 (3) 
+
+[01/15/2025 06:55] superman_i4g
+Hi, gm
+
+
+[01/15/2025 12:36] _gegul
+🫡
+
+{Reactions}
+🫡 
+
+[01/15/2025 16:50] owenzo
+hey guys
+
+
+[01/15/2025 16:50] owenzo
+very excited by the way.
+
+
+[01/15/2025 17:32] dvoe4056
+Hey Everyone, Looking forward to the Contest
+
+
+[01/15/2025 18:14] plamkata
+Hi sir, just beforehand, is this an Anchor project?
+
+
+[01/15/2025 20:04] liffidmonky
+first time auditing solana, good luck everyone! 😄
+
+{Reactions}
+👍 (3) 🫡 (2) 
+
+[01/15/2025 20:32] _arnavjindal
+Same here
+
+{Reactions}
+🤟 
+
+[01/15/2025 20:40] totdking
+Good luck to you too bud
+
+{Reactions}
+🤟 
+
+[01/16/2025 04:59] kulture_
+Yes it is
+
+
+[01/16/2025 06:55] owenzo
+the man himself is here, by the way I am a huge fan of your content by the way.
+
+
+[01/16/2025 09:29] dvoe4056
+Really? Glad to know
+
+
+[01/16/2025 09:58] abu_turaab
+hey @Kulture please is there a walkthrough for this codebase?
+
+
+[01/16/2025 14:42] cholakovvv
+@Kulture can you check the private thread please
+
+
+[01/16/2025 14:49] _arnavjindal
+Kulture sir is there a walkthrough of the code??
+
+
+[01/16/2025 15:00] kulture_
+No walkthrough of the code unfortunately. Check out the documentation and let me know if there’s any specific questions
+
+
+[01/17/2025 05:15] 0xwhyzee
+Anyone else getting this error when running integration test after building the programs? 
+
+```
+[WARN  solana_program_test] No SBF shared objects found.
+thread 'tokio-runtime-worker' panicked at /Users/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/solana-program-test-1.18.0/src/lib.rs:716:17:
+Program file data not available for pump_science (EtZR9gh25YUM6LkL2o2yYV1KzyuDdftHvYk3wsb2Ypkj)
+stack backtrace:
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+```
+
+
+[01/17/2025 07:33] emil_tsanev
+same here
+
+
+[01/17/2025 07:33] emil_tsanev
+
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - pump-science-jan [1328819985371631748].txt_Files/image-710B4.png
+
+
+[01/17/2025 07:48] 0xwhyzee
+Seems to happen at line 93:
+ `bankrunContext = await startAnchor(....)`
+
+{Reactions}
+👍 
+
+[01/17/2025 08:16] mahdirostami
+hello ser, how could we build the program?, `pnpm programs:build ` is not working.
+
+
+[01/17/2025 08:19] 0xwhyzee
+You need to run `pnpm install` first for the project
+
+{Reactions}
+👍🏻 
+
+[01/17/2025 08:22] mahdirostami
+after that, 
+> ./configs/scripts/program/build.sh: line 24: jq: command not found
+
+
+[01/17/2025 08:24] mahdirostami
+```
+$ pnpm install
+Lockfile is up to date, resolution step is skipped
+Already up to date
+Done in 619ms
+
+$ pnpm programs:build
+
+> @ programs:build /home/ubuntu/web3/code4rena/2025-01-pump-science
+> ./configs/scripts/program/build.sh
+
+Dumping external accounts to './.programsBin':
+Debug: i = 0
+Debug: EXTERNAL_SO[0] = mpl_token_metadata.so
+Debug: OUTPUT = ./.programsBin
+[ SKIPPED ] on-chain and local binaries are the same for 'mpl_token_metadata.so'
+Debug: i = 1
+Debug: EXTERNAL_SO[1] = mpl_system_extras.so
+Debug: OUTPUT = ./.programsBin
+[ SKIPPED ] on-chain and local binaries are the same for 'mpl_system_extras.so'
+Debug: i = 2
+Debug: EXTERNAL_SO[2] = dynamic_amm.so
+Debug: OUTPUT = ./.programsBin
+[ SKIPPED ] on-chain and local binaries are the same for 'dynamic_amm.so'
+Debug: i = 3
+Debug: EXTERNAL_SO[3] = vault.so
+Debug: OUTPUT = ./.programsBin
+[ SKIPPED ] on-chain and local binaries are the same for 'vault.so'
+
+./configs/scripts/program/build.sh: line 24: jq: command not found
+```
+
+
+[01/17/2025 08:29] 0xwhyzee
+You need to install `jq` , a command line tool
+
+{Reactions}
+🙏🏻 
+
+[01/17/2025 08:57] emil_tsanev
+I think running `anchor build` has fixed it, however I think we don't expect the tests to fail 😄
+
+
+[01/17/2025 08:57] emil_tsanev
+```
+  6 passing (406ms)
+  2 failing
+
+  1) pump-science
+       swap: buy:
+     Error: Failed to process transaction: transport transaction error: Error processing Instruction 1: custom program error: 0x177b
+
+  2) pump-science
+       swap: sell:
+     Error: Failed to process transaction: transport transaction error: Error processing Instruction 1: custom program error: 0x177b
+  
+ ELIFECYCLE  Command failed with exit code 2.
+```
+
+
+[01/17/2025 08:59] 0xwhyzee
+Got the same result as well
+
+{Reactions}
+👍 
+
+[01/17/2025 09:13] kulture_
+I think for the tests something got messed up after changed a thing of the code but forgot to update the tests accordingly. Checking it now and syncing it up
+
+{Reactions}
+👍 (3) 
+
+[01/17/2025 11:24] dod4ufn
+Where could we find the meteora source code for the functions used by pump science?
+
+
+[01/17/2025 11:30] bount3yhunt3r_62669
+what is the solana version used ?
+
+
+[01/17/2025 15:21] tobi0x18
+@Kulture Hi, what is the purpose of `createPool` and `lockPool`?
+
+
+[01/17/2025 15:28] kulture_
+https://github.com/mercurial-finance/mercurial-dynamic-amm-sdk
+
+They don't have the source code open source unfortunately, just the account structs that they use
+
+{Embed}
+https://github.com/mercurial-finance/mercurial-dynamic-amm-sdk
+GitHub - mercurial-finance/mercurial-dynamic-amm-sdk: An SDK for bu...
+An SDK for building applications on top of Mercurial Dynamic AMM - mercurial-finance/mercurial-dynamic-amm-sdk
+
+
+[01/17/2025 15:29] kulture_
+To create a meteora dynamic AMM pool and lock the liquidity in it
+
+{Reactions}
+👍 
+
+[01/17/2025 15:44] tobi0x18
+what is meteora dynamic AMM? Is this the next step of Bonding Curve?
+
+
+[01/17/2025 15:54] kulture_
+Yes it’s an AMM on Solana and we create a liquidity pool on it
+
+{Reactions}
+👍 
+
+[01/17/2025 15:58] tobi0x18
+Oh, you mean, first you run your own x*y = k pool.
+Then, when 85 sol is raised, remaining virtual token and Sol will be used to create a pool on Meteora (AMM on Solana), right?
+
+
+[01/17/2025 16:20] kulture_
+Yep
+
+
+[01/17/2025 19:29] bount3yhunt3r_62669
+@Kulture what is the solana version you are using?
+
+
+[01/17/2025 20:39] abu_turaab
+@Kulture are you done with this sync pls
+
+
+[01/17/2025 20:42] r0bre
+gm, reported my first bug on code4rena here 😄
+
+{Reactions}
+🔥 
+
+[01/18/2025 03:50] kulture_
+solana-cli 1.18.15
+
+
+[01/18/2025 03:51] kulture_
+We're not doing that for now as we changed the 2 parameters for feeCalculation and we don't want to make any changes to the locked files in scope.
+
+You can disregard those 2 failed tests for now
+
+{Reactions}
+👍 
+
+[01/18/2025 11:31] mahdirostami
+hello, why should this test fail?
+
+`creator try to create another bonding curve should fail`
+
+`creator ` is using new `mintKp`.
+
+
+[01/18/2025 11:32] kulture_
+Because the creator was previously removed from whitelist while whitelist is still enabled
+
+{Reactions}
+👍🏻 
+
+[01/18/2025 15:23] owenzo
+@Kulture Hey there I am having an issue when I run this command `pnpm programs:build`
+
+
+
+```bash
+
+ @ programs:build /Users/lee/Desktop/2025-01-pump-science
+> ./configs/scripts/program/build.sh
+
+Dumping external accounts to './.programsBin':
+Debug: i = 0
+Debug: EXTERNAL_SO[0] = mpl_token_metadata.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 64: solana: command not found
+Wrote account data to ./.programsBin/mpl_token_metadata.so
+Debug: i = 1
+Debug: EXTERNAL_SO[1] = mpl_system_extras.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 64: solana: command not found
+Wrote account data to ./.programsBin/mpl_system_extras.so
+Debug: i = 2
+Debug: EXTERNAL_SO[2] = dynamic_amm.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 64: solana: command not found
+Wrote account data to ./.programsBin/dynamic_amm.so
+Debug: i = 3
+Debug: EXTERNAL_SO[3] = vault.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 64: solana: command not found
+Wrote account data to ./.programsBin/vault.so
+
+
+error: no such command: `build-sbf`
+
+    View all installed commands with `cargo --list`
+    Find a package to install `build-sbf` with `cargo search cargo-build-sbf`
+ ELIFECYCLE  Command failed with exit code 101.
+
+```
+
+
+[01/18/2025 15:23] owenzo
+Kindly help me out, thanks.
+
+
+[01/18/2025 15:25] kulture_
+Seems like there's some rust related thing you need to install.
+
+Perhaps cargo install cargo-build-sbf
+
+Or the solana cli
+
+
+[01/18/2025 15:31] owenzo
+okay for the first command like the cargo install cargo-build-sbf its telling me that it doesnt exist.
+
+
+[01/18/2025 15:38] owenzo
+@Kulture I found out the solana-cli wasnt installed so I installed it but the command is still giving me issues
+
+
+[01/18/2025 15:38] owenzo
+lemme show you its like a new issue
+
+
+[01/18/2025 15:39] owenzo
+```bash
+
+
+
+Dumping external accounts to './.programsBin':
+Debug: i = 0
+Debug: EXTERNAL_SO[0] = mpl_token_metadata.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 86: sha256sum: command not found
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 87: sha256sum: command not found
+[ SKIPPED ] on-chain and local binaries are the same for 'mpl_token_metadata.so'
+Debug: i = 1
+Debug: EXTERNAL_SO[1] = mpl_system_extras.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 86: sha256sum: command not found
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 87: sha256sum: command not found
+[ SKIPPED ] on-chain and local binaries are the same for 'mpl_system_extras.so'
+Debug: i = 2
+Debug: EXTERNAL_SO[2] = dynamic_amm.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 86: sha256sum: command not found
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 87: sha256sum: command not found
+[ SKIPPED ] on-chain and local binaries are the same for 'dynamic_amm.so'
+Debug: i = 3
+Debug: EXTERNAL_SO[3] = vault.so
+Debug: OUTPUT = ./.programsBin
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 86: sha256sum: command not found
+/Users/lee/Desktop/2025-01-pump-science/configs/scripts/program/dump.sh: line 87: sha256sum: command not found
+[ SKIPPED ] on-chain and local binaries are the same for 'vault.so'
+
+
+[2025-01-18T15:38:43.162111000Z ERROR cargo_build_sbf] Failed to install platform-tools: HTTP status client error (404 Not Found) for url (https://github.com/anza-xyz/platform-tools/releases/download/v1.42/platform-tools-osx-x86_64.tar.bz2)
+ ELIFECYCLE  Command failed with exit code 1.
+
+```
+
+
+[01/18/2025 19:12] 0xfave
+@Kulture the swap test keep failing in the bankrun test
+
+
+[01/18/2025 20:11] owenzo
+uhh you're here
+
+
+[01/19/2025 02:54] kulture_
+This is currently an issue because we updated client code after changing the 2 fee parameters.
+
+You can disregard this test failing
+
+
+[01/19/2025 20:59] emil_tsanev
+Started a thread.
+
+
+[01/20/2025 00:00] bount3yhunt3r_62669
+is there a way to get it to work, i need to debug a usecase
+
+
+[01/20/2025 04:51] kulture_
+Yes there is: Just merge this PR into your local codebase: https://github.com/code-423n4/2025-01-pump-science/pull/1
+
+{Embed}
+https://github.com/code-423n4/2025-01-pump-science/pull/1
+Updates fixing bankrun tests and exchanging fee calculation paramet...
+Code4rena - ARCHIVE-PUBLIC - pump-science-jan [1328819985371631748].txt_Files/1-A9E8C
+
+
+[01/20/2025 14:44] abu_turaab
+Anchor build is not working on my local project, what could cause it?
+
+
+[01/20/2025 14:47] emil_tsanev
+incorrect version of anchor pbly? or the solana-cli
+
+
+[01/21/2025 17:12] owenzo
+I have just seen that you guys have already changed the deadline to Jan 23
+
+
+[01/21/2025 17:21] emil_tsanev
+lol
+
+{Reactions}
+🙇 
+
+[01/21/2025 18:15] itsmetechjay
+ℹ️ Hey all, we are extending this audit until Thursday, 23 January 2025 20:00.  If you haven't had time to dig in already, now's your opportunity! 🎉
+
+{Reactions}
+👍 (3) 
+
+[01/22/2025 08:07] mahdirostami
+In what situation does this come up? Is it in response to an auditor's request or a sponsor's request?
+
+
+[01/22/2025 14:41] itsmetechjay
+It can be either, or both.
+
+{Reactions}
+👍🏻 
+
+[01/22/2025 14:43] evokid
+@Kulture boss would you check my PT thanks 🙏
+
+
+[01/23/2025 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The **Pump Science** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks.
+
+{Reactions}
+👍 
+
+[01/23/2025 20:37] 0xpopeye
+Total submissions: 174
+
+{Reactions}
+👍 (3) 😲 (5) 🫡 (3) 
+
+[01/23/2025 21:23] emil_tsanev
+Thats a lot.. and I thought there isn’t a chance to break the protocol 😅. When and where we could see the potential issues found?
+
+
+[01/23/2025 22:01] mahdirostami
+Wow
+
+
+[01/24/2025 16:23] ticky211
+Where can we see the progress of our findings ???
+
+{Reactions}
+❓ (2) 
+
+[01/25/2025 09:04] ihtishamsudo
+In C4 app, but you need SR role
+
+
+[01/27/2025 15:34] xkeywordx
+why is the status not open? I mean, having the SR role in order to be allowed to comment in the app makes sense, but completely blocking users if they don't have the SR role seems like a poor design choice.
+
+
+[01/27/2025 15:42] cloudellie
+This is something we're considering, but historically C4 has only allowed SR wardens to have access to submissions prior to the report being published.
+
+
+[01/27/2025 18:20] pascal9476
+If I’m not mistaken SR role hasn’t been open in like 5 months now
+
+
+[01/27/2025 18:23] cloudellie
+Actively working on this, I know it's a major pain point
+
+
+[01/27/2025 19:53] bount3yhunt3r_62669
+@CloudEllie so if i submitted an issue without the SR role i can't see my status?
+
+
+[01/27/2025 19:55] cloudellie
+Correct. All the results are made public once the report is published. Until then, they’re visible to SR wardens only.
+
+
+[01/27/2025 19:56] bount3yhunt3r_62669
+how can i escalate then if i think i have a valid issue?
+
+
+[01/27/2025 19:56] cloudellie
+Escalation is also an SR privilege.
+
+
+[01/27/2025 20:02] cloudellie
+If you’d like to debate the rules, let’s not do it in this channel, which is meant for discussion specific to this audit. 
+
+We’re always happy to have a conversation about how C4 can improve. #🐺・wardens is a good option.
+
+{Reactions}
+👍 (2) 
+
+[01/28/2025 05:29] kurororushiruf_
+Any Idea till when will we see results? Will it be till feb 3rd week?
+
+
+[01/28/2025 14:35] liffidmonky
+long time did not participate in C4, how can check the invalidation reasons for a finding?
+
+
+[01/28/2025 14:58] liffidmonky
+@CloudEllie  should I assume this is not a rejected issue unitl the `In progress` becomes something else?
+
+{Attachments}
+Code4rena - ARCHIVE-PUBLIC - pump-science-jan [1328819985371631748].txt_Files/image-6915E.png
+
+
+[01/28/2025 15:01] itsmetechjay
+Judging has not happened yet.  Review = the sponsor's review of the issue.
+
+{Reactions}
+👍 (3) 🤟 
+
+[01/30/2025 09:35] mansa11
+This is really not fair to new wardens
+
+
+[02/01/2025 21:07] 0xbnke
+Hey
+
+
+[02/01/2025 21:10] 0xbnke
+I don’t see the submissions on GitHub.
+
+
+[02/02/2025 09:59] evokid
+You need to be SR boss. That's the rule long time ago. Nothing changed.
+
+
+[02/02/2025 10:00] evokid
+They should announce it first in #📢・sr-updates then you'll have a link to C4 submissions Panel/Board.
+
+{Reactions}
+❤️ 
+
+[02/02/2025 18:40] 0x23r0
+how to get the role
+
+
+[02/02/2025 18:40] 0x23r0
+I search in docs certify process is pause why and how you get this role?
+
+
+[02/03/2025 08:05] liffidmonky
+It is my first Solana contest, do judges leave a comment explaining why any of your issues is invalid? Would be much appreciated 😄
+
+
+[02/10/2025 14:45] xkeywordx
+Hello guys, did judging start here?
+
+
+[02/10/2025 15:08] kurororushiruf_
+2 days earlier it was in PJQA on c4 dashboard now again the status is set on judging...
+
+
+[02/10/2025 15:53] xkeywordx
+so it was somehow "reverted"? I was just curious how it goes because I remember that the number of submissions here wasn't that big as compared to other contests
+
+
+[02/10/2025 16:02] cloudellie
+This just means we've closed comments in PJQA, but the judge is still finalizing their decisions.
+
+{Reactions}
+👍 (3) thankyou (2) 
+
+[02/10/2025 16:15] xkeywordx
+Thank you
+
+{Reactions}
+hi5 
+
+[02/10/2025 17:26] ticky211
+Okay thanks man
+
+{Reactions}
+hi5 
+
+[02/19/2025 02:26] itsmetechjay
+🤑 🎉  Awards for **Pump Science**:
+
+$6,797.24 USDC » @Spearmint
+$3,041.85 USDC » @shaflow2
+$2,179.97 USDC » @evokid
+$1,660.56 USDC » @D1r3Wolf
+$1,277.35 USDC » @0x_kmr_
+$417.31 USDC » @Agontuk
+$221.05 USDC » @Sparrow
+$147.37 USDC » @KupiaSec
+$85.73 USDC » @p0wd3r
+$85.73 USDC » GEEKS (@0xFave ⨀ and @SUPERMAN_I4G)
+$85.73 USDC » @Lookman
+$85.73 USDC » @13u9
+$85.73 USDC » @ATH
+$85.73 USDC » @debo
+$85.73 USDC » Arjuna (@Calcifer and @chitresh)
+$85.73 USDC » @albort
+$85.73 USDC » @0xcb90f054
+$85.73 USDC » @ETHworker
+
+🏁 Findings summary
+--------------------------------------—
+2 High risk findings
+3 Med risk findings
+58 wardens participated
+
+Top Hunter: Spearmint
+Top Gatherer: Spearmint
+Top QA report: Agontuk
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+⚠️ Awardees, be sure to [complete your tax reporting info](https://docs.code4rena.com/awarding/incentive-model-and-awards/awarding-process#tax-information-for-code4rena-contributors-wardens-judges-etc) if you haven't already. This must be completed within 30 days (i.e. before Friday, 21 March 2025) to receive your award distribution for this audit.
+
+The leaderboard will be updated in the next couple of days with these audit results. 
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+
+[02/19/2025 17:28] evokid
+Congrats Solana Eagles 🫡
+
+{Reactions}
+hi5 (4) 
+
+[02/23/2025 11:24] emil_tsanev
+When we can expect the report to be published? (wanna see if I had sth valid at least)
+
+{Reactions}
+➕ (2) 
+
+[02/24/2025 13:10] thebrittfactor
+Sponsors are reviewing the draft report. As soon as we have approval to proceed, we'll get it published.
+
+{Reactions}
+👍 
+
+[02/26/2025 15:29] 4gontuk
+Payout wen?
+
+
+[02/26/2025 15:50] thebrittfactor
+I've reached out to the payments team for an update. We appreciate your patience!
+
+{Reactions}
+👍 
+
+[02/27/2025 20:55] glightspeed
+Audit report says the project uses solidity
+https://code4rena.com/reports/2025-01-pump-science
+
+
+[02/27/2025 21:01] itsmetechjay
+That should be Rust - will get it updated shortly.
+
+
+[03/01/2025 07:30] r0bre
+interesting, now that the report is out I believe both my findings were valid and fully ignored
+
+
+[03/01/2025 15:15] usmanhero.
+@Jay | C4 @CloudEllie  @Kulture 
+I recently reviewed the finalized report for the Pump Science contest and . I have noticed that the high-risk issue H-02 ("Missing Update of migration_token_allocation on Global Struct") identified in the final report appears to be the same as the issue I reported. However, my name and corresponding rewards are not reflected in the report.
+
+For your reference, here are the relevant links:
+
+My submission: https://code4rena.com/audits/2025-01-pump-science/submissions/S-146
+Final report: https://code4rena.com/reports/2025-01-pump-science
+
+I would appreciate it if you could review this matter and provide any necessary corrections.
+
+{Reactions}
+🧵 ✅ 
+
+[03/03/2025 10:50] cloudellie
+GM ser, would you mind submitting this as a Help Desk request? It will help us to track the request as it will likely require some investigation on our part. Thank you.
+
+
+[03/07/2025 00:05] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted in 03/14/2025 23:01. Please make sure to grab anything you might need before then.
+
+
+[03/14/2025 20:10] itsmetechjay
+ℹ️ Reminder: this channel will be deleted after 24 hours.
+
+
+==============================================================
+Exported 115 message(s)
+==============================================================
